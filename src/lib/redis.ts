@@ -1,4 +1,4 @@
-import { Redis } from '@upstash/redis'
+import { Redis } from '@upstash/redis';
 
 export const redis = new Redis({
     url: 'https://us1-quick-dingo-39503.upstash.io',

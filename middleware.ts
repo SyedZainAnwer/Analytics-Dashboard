@@ -5,7 +5,7 @@ export default async function middleware(req: NextRequest) {
     if(req.nextUrl.pathname === '/') {
         try {
             analytics.track('pageview', {
-                page: '/',
+                page: "/",
                 country: req.geo?.country,
             })
         } catch (error: any) {
@@ -17,5 +17,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const matcher = {
-    matcher: ['/']
+    matcher: ["/"]
 }
