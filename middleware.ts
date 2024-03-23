@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { analytics } from "@/utils/analytics";
 
 export default async function middleware(req: NextRequest) {
-    if(req.nextUrl.pathname === '/') {
+    if(req.nextUrl.pathname === '/analytics') {
         try {
             analytics.track('pageview', {
-                page: "/",
+                page: '/analytics',
                 country: req.geo?.country,
             })
         } catch (error: any) {
@@ -17,5 +17,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const matcher = {
-    matcher: ["/"]
+    matcher: ['/analytics']
 }
