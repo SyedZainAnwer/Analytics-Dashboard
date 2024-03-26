@@ -50,6 +50,11 @@ const Page = async() => {
         }
     }
 
+    const topCountries = [...topCountriesMap.entries()].sort((a, b) => {
+        if(a[1] > b[1]) return -1;
+        else return 1;
+    }).slice(0, 5)
+
     return(
         <div className="min-h-screen w-full py-12 flex justify-center items-center">
             <div className="relative w-full max-w-6xl mx-auto text-white">
@@ -57,6 +62,7 @@ const Page = async() => {
                     avgVisitorsPerDay={avgVisitorsPerDay} 
                     amtVisitorsToday={amtVisitorsToday}
                     timeseriesPageviews={pageviews}
+                    topCountries={topCountries}
                 />
             </div>
         </div>
