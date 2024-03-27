@@ -11,6 +11,14 @@ interface AnalyticsDashboardProps {
     topCountries: [string, number][];
 }
 
+const Badge = ({ percentage }: {percentage: number}) => {
+    const isPositive = percentage > 0;
+    const isNeutral = percentage === 0;
+    const isNegative = percentage < 0;
+
+    if(isNaN(percentage)) return null;
+}
+
 const AnalyticsDashboard = ({ 
     avgVisitorsPerDay, 
     amtVisitorsToday, 
