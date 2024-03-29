@@ -5,8 +5,8 @@ import { analytics } from "@/utils/analytics";
 const Page = async() => {
 
     const TRACKING_DAYS = 7;
-    const pageviews = await analytics.retrieveDays("pageview", TRACKING_DAYS);
-    const totalPageviews = pageviews.reduce((acc, curr ) => {
+    const pageViews = await analytics.retrieveDays("pageview", TRACKING_DAYS);
+    const totalPageviews = pageViews.reduce((acc, curr ) => {
         return (
             acc + curr.events.reduce((acc, curr) => {
                 return acc + Object.values(curr)[0]!
@@ -16,7 +16,7 @@ const Page = async() => {
 
     const avgVisitorsPerDay = (totalPageviews / TRACKING_DAYS).toFixed(1);
 
-    const amtVisitorsToday = pageviews.filter((ev) => ev.date === getDate())
+    const amtVisitorsToday = pageViews.filter((ev) => ev.date === getDate())
     .reduce((acc, curr) => {
         return (
             acc + curr.events.reduce((acc, curr) => acc + Object.values(curr)[0]!, 0)
@@ -25,8 +25,8 @@ const Page = async() => {
 
     const topCountriesMap = new Map<string, number>();
 
-    for (let i = 0; i < pageviews.length; i++) {
-        const day = pageviews[i];
+    for (let i = 0; i < pageViews.length; i++) {
+        const day = pageViews[i];
         if (!day) continue;
 
         for (let j = 0; j < day.events.length; j++) {
@@ -61,7 +61,7 @@ const Page = async() => {
                 <AnalyticsDashboard 
                     avgVisitorsPerDay={avgVisitorsPerDay} 
                     amtVisitorsToday={amtVisitorsToday}
-                    timeseriesPageviews={pageviews}
+                    timeseriesPageviews={pageViews}
                     topCountries={topCountries}
                 />
             </div>
